@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I'm Sorry, Baby ❤️</title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
+        rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Background */
+        .background {
+            position: fixed;
+            inset: 0;
+            background:
+                linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
+                url("Media (9).jpg");
+            background-size: cover;
+            background-position: center;
+            z-index: -2;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 5rem;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, .6);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 50px;
+            opacity: .9;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 16px 35px;
+            border-radius: 50px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .primary {
+            background: #ff7aa2;
+            color: white;
+        }
+
+        .secondary {
+            background: rgba(255, 255, 255, .18);
+            backdrop-filter: blur(12px);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, .3);
+        }
+
+        button:hover {
+            transform: translateY(-4px);
+        }
+
+        /* Popups */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .75);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: white;
+            color: #333;
+            width: min(900px, 95%);
+            max-height: 90vh;
+            overflow: auto;
+            border-radius: 30px;
+            padding: 40px;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            font-size: 32px;
+            cursor: pointer;
+        }
+
+        .modal-content h2 {
+            font-family: 'Playfair Display', serif;
+            color: #ff5c8a;
+            margin-bottom: 20px;
+        }
+
+        .modal-content p {
+            line-height: 1.9;
+            font-size: 1.05rem;
+        }
+
+        /* Photo booth */
+
+        .gallery-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .marquee {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+            animation: scroll 35s linear infinite;
+        }
+
+        .track img {
+            width: 280px;
+            height: 380px;
+            object-fit: cover;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        }
+
+        .track:hover {
+            animation-play-state: paused;
+        }
+
+        @keyframes scroll {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(-50%);
+            }
+        }
+
+        @media(max-width:768px) {
+            h1 {
+                font-size: 3rem;
+            }
+
+            .track img {
+                width: 220px;
+                height: 300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="background"></div>
+
+    <div class="container">
+        <h1>I'm Sorry, Baby</h1>
+        <p class="subtitle">
+            Because every memory with you means the world to me.
+        </p>
+
+        <div class="buttons">
+            <button class="primary" onclick="openModal('sorryModal')">
+                Sorry ❤️
+            </button>
+
+            <button class="secondary" onclick="openModal('memoryModal')">
+                Connect ✨
+            </button>
+        </div>
+    </div>
+
+    <!-- APOLOGY -->
+    <div class="modal" id="sorryModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('sorryModal')">&times;</span>
+
+            <h2>To My Love ❤️</h2>
+
+            <p>
+                I'm truly sorry for hurting you.
+                You never deserved the pain that my actions and words caused.
+                The last thing I ever want is to become the reason behind your tears.
+                You mean so much to me, and seeing us like this hurts me deeply.
+                <br><br>
+
+                I know that an apology doesn't magically fix everything, and I know trust and happiness take time to
+                heal.
+                But I want you to know that I genuinely regret my mistakes.
+                <br><br>
+
+                Thank you for loving me, for being there through so many moments, and for making my life brighter in
+                ways I can never explain.
+                I don't take your love for granted.
+                <br><br>
+
+                I promise to learn from this, to be more understanding, more patient, and better for you and for us.
+                You deserve kindness, effort, honesty, and love every single day.
+                <br><br>
+
+                No matter what happens, I will always cherish every laugh, every picture, every little adventure, and
+                every memory we've made together.
+                <br><br>
+
+                I miss your smile.
+                I miss us.
+                And I hope we'll make things right.
+                <br><br>
+
+                I'm sorry, baby.
+                I love you. ❤️
+            </p>
+        </div>
+    </div>
+
+    <!-- MEMORIES -->
+    <div class="modal" id="memoryModal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('memoryModal')">&times;</span>
+
+            <h2 class="gallery-title">
+                Our Little Photo Booth ❤️
+            </h2>
+
+            <div class="marquee">
+                <div class="track">
+
+                    <img src="Media.jpg">
+                    <img src="Media (1).jpg">
+                    <img src="Media (2).jpg">
+                    <img src="Media (3).jpg">
+                    <img src="Media (4).jpg">
+                    <img src="Media (5).jpg">
+                    <img src="Media (6).jpg">
+                    <img src="Media (7).jpg">
+                    <img src="Media (8).jpg">
+                    <img src="Media (9).jpg">
+
+                    <!-- Duplicate for infinite scroll -->
+                    <img src="Media.jpg">
+                    <img src="Media (1).jpg">
+                    <img src="Media (2).jpg">
+                    <img src="Media (3).jpg">
+                    <img src="Media (4).jpg">
+                    <img src="Media (5).jpg">
+                    <img src="Media (6).jpg">
+                    <img src="Media (7).jpg">
+                    <img src="Media (8).jpg">
+                    <img src="Media (9).jpg">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        window.onclick = function (e) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
