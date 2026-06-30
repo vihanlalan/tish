@@ -5,9 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>I'm Sorry, Baby ❤️</title>
-
     <link
-        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap"
         rel="stylesheet">
 
     <style>
@@ -18,22 +17,68 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             overflow: hidden;
+            background: #0a0a0a;
         }
 
-        /* Background */
+        /* ── Home Background ── */
         .background {
             position: fixed;
             inset: 0;
             background:
-                linear-gradient(rgba(0, 0, 0, .55), rgba(0, 0, 0, .55)),
-                url("Media (9).jpg");
-            background-size: cover;
-            background-position: center;
+                linear-gradient(to bottom, rgba(10, 5, 5, 0.35) 0%, rgba(10, 5, 5, 0.6) 100%),
+                url("Media (9).jpg") center/cover no-repeat;
             z-index: -2;
+            transition: opacity 0.6s ease;
         }
 
+        /* subtle vignette */
+        .background::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.55) 100%);
+        }
+
+        /* ── Floating hearts ── */
+        .hearts {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            bottom: -60px;
+            font-size: 1.1rem;
+            opacity: 0;
+            animation: floatHeart linear infinite;
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(0) rotate(-10deg);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 0.45;
+            }
+
+            90% {
+                opacity: 0.25;
+            }
+
+            100% {
+                transform: translateY(-110vh) rotate(10deg);
+                opacity: 0;
+            }
+        }
+
+        /* ── Landing ── */
         .container {
             height: 100vh;
             display: flex;
@@ -42,60 +87,93 @@
             flex-direction: column;
             text-align: center;
             color: white;
-            padding: 20px;
+            padding: 24px;
+            gap: 0;
+        }
+
+        .eyebrow {
+            font-size: 0.78rem;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(255, 200, 200, 0.7);
+            margin-bottom: 18px;
+            font-weight: 400;
         }
 
         h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 5rem;
-            margin-bottom: 20px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, .6);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(3.2rem, 8vw, 6.5rem);
+            font-weight: 500;
+            line-height: 1.08;
+            letter-spacing: -0.01em;
+            color: #fff;
+            margin-bottom: 22px;
+        }
+
+        h1 em {
+            font-style: italic;
+            color: #ffb3c6;
         }
 
         .subtitle {
-            font-size: 1.2rem;
-            margin-bottom: 50px;
-            opacity: .9;
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.65);
+            font-weight: 300;
+            max-width: 360px;
+            line-height: 1.7;
+            margin-bottom: 52px;
         }
 
         .buttons {
             display: flex;
-            gap: 20px;
+            gap: 14px;
             flex-wrap: wrap;
+            justify-content: center;
         }
 
         button {
             border: none;
-            padding: 16px 35px;
-            border-radius: 50px;
-            font-size: 1rem;
             cursor: pointer;
-            transition: 0.3s;
-            font-weight: 500;
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 400;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
         }
 
-        .primary {
-            background: #ff7aa2;
+        .btn-primary {
+            background: linear-gradient(135deg, #ff6b9d, #c94b8a);
             color: white;
+            padding: 15px 38px;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            box-shadow: 0 8px 28px rgba(201, 75, 138, 0.45);
         }
 
-        .secondary {
-            background: rgba(255, 255, 255, .18);
-            backdrop-filter: blur(12px);
-            color: white;
-            border: 1px solid rgba(255, 255, 255, .3);
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 14px 36px rgba(201, 75, 138, 0.55);
         }
 
-        button:hover {
-            transform: translateY(-4px);
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            color: rgba(255, 255, 255, 0.88);
+            padding: 14px 34px;
+            border-radius: 100px;
+            font-size: 0.95rem;
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Popups */
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            background: rgba(255, 255, 255, 0.16);
+        }
 
+        /* ── Modal Backdrop ── */
         .modal {
             position: fixed;
             inset: 0;
-            background: rgba(0, 0, 0, .75);
             display: none;
             justify-content: center;
             align-items: center;
@@ -103,62 +181,154 @@
             padding: 20px;
         }
 
-        .modal-content {
-            background: white;
-            color: #333;
-            width: min(900px, 95%);
-            max-height: 90vh;
-            overflow: auto;
-            border-radius: 30px;
-            padding: 40px;
+        .modal.active {
+            display: flex;
+        }
+
+        /* ── Sorry Modal — uses same photo as home ── */
+        #sorryModal {
+            background:
+                linear-gradient(to bottom, rgba(8, 4, 8, 0.52) 0%, rgba(8, 0, 12, 0.72) 100%),
+                url("Media (9).jpg") center/cover no-repeat;
+        }
+
+        .sorry-inner {
             position: relative;
+            max-width: 580px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 56px 48px 52px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.14);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-radius: 28px;
+            color: #fff;
+            text-align: left;
+            scrollbar-width: none;
         }
 
-        .close {
+        .sorry-inner::-webkit-scrollbar {
+            display: none;
+        }
+
+        .close-btn {
             position: absolute;
-            right: 25px;
-            top: 20px;
-            font-size: 32px;
+            right: 22px;
+            top: 18px;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
+            transition: background 0.2s;
+            backdrop-filter: blur(8px);
         }
 
-        .modal-content h2 {
-            font-family: 'Playfair Display', serif;
-            color: #ff5c8a;
-            margin-bottom: 20px;
+        .close-btn:hover {
+            background: rgba(255, 255, 255, 0.18);
         }
 
-        .modal-content p {
-            line-height: 1.9;
-            font-size: 1.05rem;
+        .sorry-label {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 180, 200, 0.7);
+            margin-bottom: 14px;
+            font-weight: 400;
         }
 
-        /* Photo booth */
+        .sorry-inner h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 500;
+            color: #fff;
+            margin-bottom: 28px;
+            line-height: 1.15;
+        }
 
-        .gallery-title {
+        .sorry-inner h2 em {
+            font-style: italic;
+            color: #ffb3c6;
+        }
+
+        .sorry-inner p {
+            font-size: 0.97rem;
+            line-height: 2;
+            color: rgba(255, 255, 255, 0.82);
+            font-weight: 300;
+        }
+
+        .sorry-inner .sign-off {
+            margin-top: 32px;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #ffb3c6;
+        }
+
+        /* ── Memory Modal ── */
+        #memoryModal {
+            background: rgba(0, 0, 0, 0.82);
+            backdrop-filter: blur(4px);
+        }
+
+        .memory-inner {
+            position: relative;
+            width: min(860px, 96%);
+            max-height: 90vh;
+            overflow: hidden;
+            background: rgba(20, 10, 18, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 28px;
+            padding: 44px 0 36px;
+        }
+
+        .memory-inner .close-btn {
+            right: 18px;
+            top: 14px;
+        }
+
+        .gallery-label {
             text-align: center;
-            margin-bottom: 30px;
+            margin-bottom: 28px;
+            padding: 0 20px;
         }
 
+        .gallery-label span {
+            font-size: 0.72rem;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: rgba(255, 180, 200, 0.6);
+        }
+
+        .gallery-label h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 2rem;
+            font-weight: 500;
+            color: #fff;
+            margin-top: 6px;
+        }
+
+        /* Marquee */
         .marquee {
             overflow: hidden;
             width: 100%;
-            position: relative;
         }
 
         .track {
             display: flex;
-            gap: 20px;
+            gap: 16px;
             width: max-content;
-            animation: scroll 35s linear infinite;
-        }
-
-        .track img {
-            width: 280px;
-            height: 380px;
-            object-fit: cover;
-            border-radius: 25px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+            animation: scroll 38s linear infinite;
+            padding: 8px 0 16px;
         }
 
         .track:hover {
@@ -175,14 +345,101 @@
             }
         }
 
-        @media(max-width:768px) {
-            h1 {
-                font-size: 3rem;
+        /* ── Flip card ── */
+        .flip-card {
+            width: 240px;
+            height: 340px;
+            flex-shrink: 0;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+
+        .flip-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.65s cubic-bezier(0.4, 0.2, 0.2, 1);
+            border-radius: 18px;
+        }
+
+        .flip-card:hover .flip-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-front,
+        .flip-back {
+            position: absolute;
+            inset: 0;
+            border-radius: 18px;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            overflow: hidden;
+        }
+
+        .flip-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            border-radius: 18px;
+        }
+
+        .flip-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(145deg, #1a0a14 0%, #2d0d20 50%, #1a0a14 100%);
+            border: 1px solid rgba(255, 130, 170, 0.2);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 28px 22px;
+            text-align: center;
+            gap: 14px;
+        }
+
+        .flip-back .heart-icon {
+            font-size: 1.6rem;
+            opacity: 0.85;
+        }
+
+        .flip-back .story {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.05rem;
+            font-style: italic;
+            color: rgba(255, 220, 230, 0.92);
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        .flip-back .story-tag {
+            font-size: 0.65rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(255, 150, 180, 0.45);
+            margin-top: 4px;
+        }
+
+        /* ── Scrollbar on sorry modal ── */
+        .sorry-inner {
+            scrollbar-width: thin;
+            scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+        }
+
+        @media (max-width: 600px) {
+            .sorry-inner {
+                padding: 44px 28px 40px;
             }
 
-            .track img {
-                width: 220px;
-                height: 300px;
+            .flip-card {
+                width: 190px;
+                height: 270px;
+            }
+
+            .flip-back .story {
+                font-size: 0.9rem;
             }
         }
     </style>
@@ -192,122 +449,154 @@
 
     <div class="background"></div>
 
+    <!-- Floating hearts -->
+    <div class="hearts" id="hearts"></div>
+
+    <!-- Landing -->
     <div class="container">
-        <h1>I'm Sorry, Baby</h1>
-        <p class="subtitle">
-            Because every memory with you means the world to me.
-        </p>
+        <p class="eyebrow">for you, always</p>
+        <h1>I'm Sorry,<br><em>Baby</em></h1>
+        <p class="subtitle">Every memory we've made together means the world to me.</p>
 
         <div class="buttons">
-            <button class="primary" onclick="openModal('sorryModal')">
-                Sorry ❤️
-            </button>
-
-            <button class="secondary" onclick="openModal('memoryModal')">
-                Connect ✨
-            </button>
+            <button class="btn-primary" onclick="openModal('sorryModal')">Sorry ❤️</button>
+            <button class="btn-secondary" onclick="openModal('memoryModal')">Our Memories ✨</button>
         </div>
     </div>
 
-    <!-- APOLOGY -->
+    <!-- APOLOGY MODAL -->
     <div class="modal" id="sorryModal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('sorryModal')">&times;</span>
+        <div class="sorry-inner">
+            <button class="close-btn" onclick="closeModal('sorryModal')">✕</button>
 
-            <h2>To My Love ❤️</h2>
+            <p class="sorry-label">a letter</p>
+            <h2>To My <em>Love</em></h2>
 
             <p>
-                I'm truly sorry for hurting you.
-                You never deserved the pain that my actions and words caused.
-                The last thing I ever want is to become the reason behind your tears.
-                You mean so much to me, and seeing us like this hurts me deeply.
-                <br><br>
-
-                I know that an apology doesn't magically fix everything, and I know trust and happiness take time to
-                heal.
-                But I want you to know that I genuinely regret my mistakes.
-                <br><br>
-
-                Thank you for loving me, for being there through so many moments, and for making my life brighter in
-                ways I can never explain.
-                I don't take your love for granted.
-                <br><br>
-
-                I promise to learn from this, to be more understanding, more patient, and better for you and for us.
-                You deserve kindness, effort, honesty, and love every single day.
-                <br><br>
-
-                No matter what happens, I will always cherish every laugh, every picture, every little adventure, and
-                every memory we've made together.
-                <br><br>
-
-                I miss your smile.
-                I miss us.
-                And I hope we'll make things right.
-                <br><br>
-
-                I'm sorry, baby.
-                I love you. ❤️
+                I'm truly sorry for hurting you. You never deserved the pain my actions and words caused. The last thing
+                I ever want is to be the reason behind your tears.
             </p>
+            <br>
+            <p>
+                I know an apology doesn't magically fix things, and I know trust takes time. But I need you to know I
+                genuinely regret what I did. Not because of how it made things awkward — but because I care about you,
+                deeply, and I hate that I made you feel otherwise.
+            </p>
+            <br>
+            <p>
+                Thank you for loving me. For being there through so many moments. For making my life so much brighter in
+                ways I can't even put into words. I don't take your love for granted — even when it might've seemed like
+                I did.
+            </p>
+            <br>
+            <p>
+                I promise to be more understanding, more patient, and better — for you and for us. You deserve kindness,
+                effort, and love every single day.
+            </p>
+            <br>
+            <p>
+                No matter what, I'll always cherish every laugh, every photo, every little adventure we've shared
+                together.
+            </p>
+            <br>
+            <p>
+                I miss your smile. I miss us. And I really hope we can make this right.
+            </p>
+
+            <p class="sign-off">I'm sorry, baby.
+                Lots of love, vihu ❤️</p>
         </div>
     </div>
 
-    <!-- MEMORIES -->
+    <!-- MEMORIES MODAL -->
     <div class="modal" id="memoryModal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('memoryModal')">&times;</span>
+        <div class="memory-inner">
+            <button class="close-btn" onclick="closeModal('memoryModal')">✕</button>
 
-            <h2 class="gallery-title">
-                Our Little Photo Booth ❤️
-            </h2>
+            <div class="gallery-label">
+                <span>captured moments</span>
+                <h2>Our Little Photo Booth ❤️</h2>
+            </div>
 
             <div class="marquee">
-                <div class="track">
-
-                    <img src="Media.jpg">
-                    <img src="Media (1).jpg">
-                    <img src="Media (2).jpg">
-                    <img src="Media (3).jpg">
-                    <img src="Media (4).jpg">
-                    <img src="Media (5).jpg">
-                    <img src="Media (6).jpg">
-                    <img src="Media (7).jpg">
-                    <img src="Media (8).jpg">
-                    <img src="Media (9).jpg">
-
-                    <!-- Duplicate for infinite scroll -->
-                    <img src="Media.jpg">
-                    <img src="Media (1).jpg">
-                    <img src="Media (2).jpg">
-                    <img src="Media (3).jpg">
-                    <img src="Media (4).jpg">
-                    <img src="Media (5).jpg">
-                    <img src="Media (6).jpg">
-                    <img src="Media (7).jpg">
-                    <img src="Media (8).jpg">
-                    <img src="Media (9).jpg">
-
-                </div>
+                <div class="track" id="photoTrack"></div>
             </div>
         </div>
     </div>
 
     <script>
+        // ── Floating hearts ──
+        const emojis = ['❤️', '🩷', '💕', '✨', '💗'];
+        const heartsContainer = document.getElementById('hearts');
+
+        function spawnHeart() {
+            const el = document.createElement('span');
+            el.classList.add('heart');
+            el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+            el.style.left = Math.random() * 100 + 'vw';
+            const dur = 7 + Math.random() * 8;
+            el.style.animationDuration = dur + 's';
+            el.style.animationDelay = Math.random() * 3 + 's';
+            el.style.fontSize = (0.7 + Math.random() * 0.8) + 'rem';
+            heartsContainer.appendChild(el);
+            setTimeout(() => el.remove(), (dur + 3) * 1000);
+        }
+
+        for (let i = 0; i < 6; i++) spawnHeart();
+        setInterval(spawnHeart, 1800);
+
+        // ── Flip cards ──
+        const photos = [
+            { src: 'Media.jpg', story: 'we were walking, and i was fighting with my dad, and you were there for me. just like you always are <3.' },
+            { src: 'Media (1).jpg', story: 'your smile in this one. it gets me every single time <3.' },
+            { src: 'Media (3).jpg', story: 'formals 2.0. just us looking at each other <3.' },
+            { src: 'Media (4).jpg', story: 'this was the moment I realised I was completely, entirely gone for you <3.' },
+            { src: 'Media (6).jpg', story: 'the lonavla trip with you, especially our own walk, so amazing. just how life feels with you <3.' },
+            { src: 'Media (7).jpg', story: 'you looked so beautiful here. I genuinely couldn\'t stop staring <3.' },
+            { src: 'Media (8).jpg', story: 'the car ride with your friends, where they became our friends, because you\'re the best <3.' },
+            { src: 'Media (9).jpg', story: 'the day it took me so long to get you a dc, but worth it <3.' },
+            { src: 'shared image.jpg', story: 'our little trips to juhu beach will always be my fav <3.' },
+            { src: 'shared image (1).jpg', story: 'easily my top 3 dates with you ever <3' },
+            { src: 'shared image (2).jpg', story: 'the one time i actually liked trekking. you do that to me <3' },
+            { src: 'shared image (3).jpg', story: 'I saved this the second I clicked it. happy anniversary <3.' },
+            { src: 'shared image (4).jpg', story: 'the best navratri ever. hope to have so so many more like these <3.' },
+        ];
+
+        function makeCard({ src, story }) {
+            const card = document.createElement('div');
+            card.className = 'flip-card';
+            card.innerHTML = `
+                <div class="flip-inner">
+                    <div class="flip-front">
+                        <img src="${src}" alt="">
+                    </div>
+                    <div class="flip-back">
+                        <span class="heart-icon">❤️</span>
+                        <p class="story">${story}</p>
+                        <span class="story-tag">a memory</span>
+                    </div>
+                </div>`;
+            return card;
+        }
+
+        const track = document.getElementById('photoTrack');
+        // original set + duplicate for seamless loop
+        [...photos, ...photos].forEach(p => track.appendChild(makeCard(p)));
+
+        // ── Modal ──
         function openModal(id) {
-            document.getElementById(id).style.display = 'flex';
+            document.getElementById(id).classList.add('active');
         }
 
         function closeModal(id) {
-            document.getElementById(id).style.display = 'none';
+            document.getElementById(id).classList.remove('active');
         }
 
-        window.onclick = function (e) {
+        window.addEventListener('click', function (e) {
             document.querySelectorAll('.modal').forEach(modal => {
-                if (e.target === modal) {
-                    modal.style.display = 'none';
-                }
+                if (e.target === modal) modal.classList.remove('active');
             });
-        }
+        });
     </script>
 
 </body>
